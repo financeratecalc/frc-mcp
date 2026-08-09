@@ -1,6 +1,6 @@
 # frc-mcp — FinanceRateCalc MCP Server
 
-[![AllMCPs](https://allmcps.com/api/badge/financeratecalc-frc-mcp?style=directory)](https://allmcps.com/mcp/financeratecalc-frc-mcp)
+[![AllMCPs Verified](https://allmcps.com/api/badge/financeratecalc-frc-mcp)](https://allmcps.com/mcp/financeratecalc-frc-mcp?verify=f03cf9df-b2a6-4e4a-b914-a60161b7f75d)
 
 Query lender-level FHA denial statistics from the complete 2025 federal HMDA record
 (1,217,297 credit decisions) directly from an AI agent.
