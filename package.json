@@ -1,0 +1,14 @@
+{
+  "name": "frc-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for FinanceRateCalc — lender-level FHA denial statistics from the complete 2025 federal HMDA record. Historical observations, never individual predictions.",
+  "type": "module",
+  "bin": { "frc-mcp": "server.js" },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  },
+  "license": "MIT",
+  "homepage": "https://financeratecalc.com/mcp-server.html"
+}
