@@ -11,6 +11,13 @@ Query lender-level FHA denial statistics from the complete 2025 federal HMDA rec
 **The red line:** every figure is a historical aggregate. This server will never accept
 borrower details or return individual approval predictions.
 
+
+## Remote (no install)
+Streamable HTTP endpoint — connect any MCP client directly:
+```
+https://frc-mcp.ziyetis.workers.dev
+```
+
 ## Install (Claude Desktop / any MCP host)
 
 ```json
