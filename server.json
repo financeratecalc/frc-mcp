@@ -1,13 +1,22 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "io.github.financeratecalc/frc-mcp",
-  "description": "Lender-level FHA mortgage denial statistics from the complete 2025 federal HMDA record (1,217,297 credit decisions). Historical observations, never individual predictions.",
+  "description": "Lender-level FHA denial statistics from the full 2025 federal HMDA record. Historical data only.",
   "version": "1.0.1",
   "websiteUrl": "https://financeratecalc.com/mcp-server.html",
-  "repository": { "url": "https://github.com/financeratecalc/frc-mcp", "source": "github" },
+  "repository": {
+    "url": "https://github.com/financeratecalc/frc-mcp",
+    "source": "github"
+  },
   "packages": [
-    { "registryType": "npm", "registryBaseUrl": "https://registry.npmjs.org",
-      "identifier": "frc-mcp", "version": "1.0.1",
-      "transport": { "type": "stdio" } }
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "frc-mcp",
+      "version": "1.0.1",
+      "transport": {
+        "type": "stdio"
+      }
+    }
   ]
 }
