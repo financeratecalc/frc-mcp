@@ -34,8 +34,9 @@ async function callTool(name, args) {
     const idx = await getJSON("/api/index.json");
     const q = norm(args.lender || "");
     const list = idx.lenders || [];
-    let hit = list.find(l => norm(l.name || "") === q || (l.lei || "") === args.lender || norm(l.slug || "") === q.replace(/ /g, "-"));
-    if (!hit) hit = list.find(l => norm(l.name || "").includes(q) || q.includes(norm(l.name || "")));
+    const nm = l => norm(l.name || l.lender || "");
+    let hit = list.find(l => nm(l) === q || (l.lei || "") === args.lender || norm(l.slug || "") === q.replace(/ /g, "-"));
+    if (!hit && q) hit = list.find(l => nm(l) && (nm(l).includes(q) || q.includes(nm(l))));
     if (!hit) throw new Error(`Lender not found in the top-100 set: "${args.lender}". Use list_lenders.`);
     return getJSON(`/api/lender/${hit.slug}.json`);
   }
