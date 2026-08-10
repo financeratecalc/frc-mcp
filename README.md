@@ -18,7 +18,7 @@ borrower details or return individual approval predictions.
   "mcpServers": {
     "financeratecalc": {
       "command": "npx",
-      "args": ["-y", "github:financeratecalc/frc-mcp"]
+      "args": ["-y", "frc-mcp"]
     }
   }
 }
