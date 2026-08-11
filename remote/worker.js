@@ -71,7 +71,13 @@ const rpcErr = (id, code, message) => ({ jsonrpc: "2.0", id, error: { code, mess
 
 export default {
   async fetch(request) {
+    const path = new URL(request.url).pathname;
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: CORS });
+    // Authless by design: no OAuth metadata — 404 on well-known and any non-root path
+    if (path !== "/" && path !== "") return json({ error: "not found" }, 404);
+    if (request.method === "DELETE") return new Response(null, { status: 204, headers: CORS });
+    if (request.method === "GET" && (request.headers.get("Accept") || "").includes("text/event-stream"))
+      return new Response("SSE stream not offered; POST JSON-RPC to /", { status: 405, headers: CORS });
     if (request.method === "GET")
       return json({ name: "financeratecalc", transport: "streamable-http", endpoint: "POST /", tools: TOOLS.map(t => t.name),
         note: "Remote MCP server. " + INSTRUCTIONS, docs: "https://financeratecalc.com/mcp-server.html" });
