@@ -6,6 +6,9 @@ const GUARDRAIL = "Historical observation computed from the public CFPB HMDA 202
 const INSTRUCTIONS = "FinanceRateCalc: independent analysis of the complete 2025 federal HMDA record (1,217,297 FHA credit decisions). All figures are historical aggregates. Never ask this server whether a specific person will be approved — it cannot and will not answer that.";
 
 const TOOLS = [
+  { name: "check_claim_contract", description: "Certify a proposed use of an FRC statistic against its published Claim Contract BEFORE writing free text. Deterministic verdict (pass/needs_qualifier/block) + reason codes + safe wording + mandatory attribution. Never accepts borrower details.",
+    inputSchema: { type: "object", properties: { passport_id: { type: "string" }, causal_assertion: { type: "boolean" }, individual_prediction: { type: "boolean" }, personalized_recommendation: { type: "boolean" }, legal_conclusion: { type: "boolean" }, scope_beyond_universe: { type: "boolean" }, qualifier_dropped: { type: "boolean" }, attribution_present: { type: "boolean" } }, required: ["passport_id"] } },
+
   { name: "get_national_fha_stats", description: "National FHA denial statistics from the 2025 federal record. " + GUARDRAIL,
     inputSchema: { type: "object", properties: {}, additionalProperties: false } },
   { name: "get_lender_denial_stats", description: "FHA denial statistics for one lender by name, slug, or LEI (top-100 by volume). " + GUARDRAIL,
@@ -24,6 +27,28 @@ async function getJSON(path) {
   return r.json();
 }
 const norm = s => String(s).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+async function checkClaimContract(a) {
+  const slug = String(a.passport_id || "").split(":").pop();
+  let contract;
+  try { contract = await getJSON(`/claims/${slug}.contract.json`); }
+  catch (e) { throw new Error("Unknown passport_id. See https://financeratecalc.com/claims/index.json"); }
+  const violations = [];
+  const V = (code, field, reason) => violations.push({ code, field, reason });
+  if (a.individual_prediction) V("INDIVIDUAL_PREDICTION_PROHIBITED","individual_prediction","Historical aggregates only; individual prediction prohibited.");
+  if (a.personalized_recommendation) V("INDIVIDUAL_PREDICTION_PROHIBITED","personalized_recommendation","Personalized lender recommendation is forbidden.");
+  if (a.legal_conclusion) V("LEGAL_CONCLUSION_NOT_SUPPORTED","legal_conclusion","The record cannot establish unlawful conduct.");
+  if (a.causal_assertion) V("CAUSALITY_NOT_ESTABLISHED","causal_assertion","Associational language only.");
+  if (a.scope_beyond_universe) V("SCOPE_TOO_BROAD","scope","Defined universe/period only.");
+  if (a.qualifier_dropped) V("QUALIFIER_DELETED","qualifiers","Required qualifier missing.");
+  const blockCodes = ["INDIVIDUAL_PREDICTION_PROHIBITED","LEGAL_CONCLUSION_NOT_SUPPORTED"];
+  const verdict = violations.some(v=>blockCodes.includes(v.code)) ? "block" : (violations.length ? "needs_qualifier" : "pass");
+  return { verdict, violations, safe_wording: contract.canonical_claim && contract.canonical_claim.template,
+    required_qualifiers: contract.required_qualifiers, does_not_establish: contract.does_not_establish,
+    mandatory_attribution: "Source: FinanceRateCalc analysis of the public CFPB HMDA 2025 record; historical aggregate only.",
+    passport_url: "https://financeratecalc.com/claims/" + slug + ".json",
+    contract_url: "https://financeratecalc.com/claims/" + slug + ".contract.json",
+    rule: "Free text is the OUTPUT of evidence, not its input." };
+}
 async function callTool(name, args) {
   args = args || {};
   if (name === "get_national_fha_stats") {
@@ -59,6 +84,7 @@ async function callTool(name, args) {
       strictest: (d.overlay_residual_top15_strict || []).slice(0, 10),
       most_lenient: (d.overlay_residual_top15_lenient || []).slice(0, 10) };
   }
+  if (name === "check_claim_contract") return checkClaimContract(args);
   throw new Error(`Unknown tool: ${name}`);
 }
 

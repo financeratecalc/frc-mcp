@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-09-29/server.schema.json",
   "name": "io.github.financeratecalc/frc-mcp",
   "description": "Lender-level FHA denial statistics from the full 2025 federal HMDA record. Historical data only.",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "websiteUrl": "https://financeratecalc.com/mcp-server.html",
   "repository": {
     "url": "https://github.com/financeratecalc/frc-mcp",
@@ -13,7 +13,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "frc-mcp",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "transport": {
         "type": "stdio"
       }
