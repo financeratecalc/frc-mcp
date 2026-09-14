@@ -3,10 +3,11 @@
 [![AllMCPs Verified](https://allmcps.com/api/badge/financeratecalc-frc-mcp)](https://allmcps.com/mcp/financeratecalc-frc-mcp?verify=f03cf9df-b2a6-4e4a-b914-a60161b7f75d)
 
 Query lender-level FHA denial statistics from the complete 2025 federal HMDA record
-(1,217,297 credit decisions) directly from an AI agent.
+(1,187,606 credit decisions, reverse mortgages excluded) directly from an AI agent.
 
-**Tools:** `get_national_fha_stats` · `get_lender_denial_stats` · `list_lenders` ·
-`get_state_denial_stats` · `get_door_effect_summary`
+**Tools (remote endpoint, v1.7.0):** `check_claim_contract` · `get_national_fha_stats` · `get_lender_denial_stats` · `list_lenders` · `get_state_denial_stats` · `get_door_effect_summary` · `get_metro_lender_gap` · `screen_counterparties` · `screen_counterparties_quote` · `list_cohorts` · `run_cohort` · `get_conditional_door_map`
+
+The npm/stdio package exposes the original five read-only tools; the remote endpoint at https://frc-mcp.ziyetis.workers.dev carries all twelve. Paid tools return a free preview; a full Evidence Brief needs a license bought by a human — the agent only relays the offer.
 
 **The red line:** every figure is a historical aggregate. This server will never accept
 borrower details or return individual approval predictions.
