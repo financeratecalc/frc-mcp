@@ -18,7 +18,7 @@ https://frc-mcp.ziyetis.workers.dev
 ```
 
 Streamable HTTP, stateless. MCP protocol revisions `2026-07-28`, `2025-11-25`, `2025-06-18`,
-`2025-03-26`. Server version **1.35.0**. Listed in the official MCP registry as
+`2025-03-26`. Server version **1.39.0** (tools, resources and prompts: the publisher's files served read-only, the teach block as prompt templates). Listed in the official MCP registry as
 `io.github.financeratecalc/frc-mcp`.
 
 Client configs (Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, Codex, Gemini CLI), an
