@@ -18,14 +18,14 @@ https://frc-mcp.ziyetis.workers.dev
 ```
 
 Streamable HTTP, stateless. MCP protocol revisions `2026-07-28`, `2025-11-25`, `2025-06-18`,
-`2025-03-26`. Server version **1.39.0** (tools, resources and prompts: the publisher's files served read-only, the teach block as prompt templates). Listed in the official MCP registry as
+`2025-03-26`. Server version **1.44.0** (tools, resources and prompts; A2A agent card at `/.well-known/agent-card.json`; a `citation` envelope on every figure-bearing result; every claim document carries a keyless CFPB Data Browser `reproduce` query). Listed in the official MCP registry as
 `io.github.financeratecalc/frc-mcp`.
 
 Client configs (Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, Codex, Gemini CLI), an
 instruction block for `CLAUDE.md` / `AGENTS.md`, and a first task to try:
 https://financeratecalc.com/use-frc.html
 
-## Tools (remote endpoint, 16)
+## Tools (remote endpoint, 17)
 
 | Tool | What it answers |
 |---|---|
@@ -38,6 +38,7 @@ https://financeratecalc.com/use-frc.html
 | `get_small_loan_penalty` | Denial rate under $150K vs over $250K, by state. |
 | `get_denial_reason_shares` | Median and maximum share of each HMDA denial reason across the top-100 lenders. |
 | `get_door_effect_summary` | Lender identity's share of explained variation in 2025 FHA denials. |
+| `get_application_outcomes` | Where FHA applications end: originated, approved-not-accepted, denied, withdrawn, closed-incomplete as shares of applications acted on, nationally or for one lender, with the reconciliation to the decisioned denial rate. |
 | `get_conditional_door_map` | Per-lender conditional surface with its robustness record. |
 | `list_cohorts` / `run_cohort` | Ready-made public cohorts; no upload needed. |
 | `get_rule` | One of five dated rule tables: FHA annual MIP (ML 2023-05), FHA forward loan limits 2026, FHFA conforming limits 2026, CFPB HOEPA/QM thresholds 2026, VA funding fee. |
