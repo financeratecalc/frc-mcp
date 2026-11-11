@@ -18,7 +18,7 @@ https://frc-mcp.ziyetis.workers.dev
 ```
 
 Streamable HTTP, stateless. MCP protocol revisions `2026-07-28`, `2025-11-25`, `2025-06-18`,
-`2025-03-26`. Server version **1.45.0** (tools, resources and prompts; `get_official_figure` returns figures from official publications restated as printed with the document's SHA-256 and revision status — Level-2 receipts; A2A agent card at `/.well-known/agent-card.json`; a `citation` envelope on every figure-bearing result; every claim document carries a keyless CFPB Data Browser `reproduce` query). Listed in the official MCP registry as
+`2025-03-26`. Server version **1.45.1** (tools, resources and prompts; `get_official_figure` returns figures from official publications restated as printed with the document's SHA-256 and revision status — Level-2 receipts; A2A agent card at `/.well-known/agent-card.json`; a `citation` envelope on every figure-bearing result; every claim document carries a keyless CFPB Data Browser `reproduce` query). Listed in the official MCP registry as
 `io.github.financeratecalc/frc-mcp`.
 
 Client configs (Claude Desktop, Claude Code, Cursor, VS Code, Windsurf, Codex, Gemini CLI), an
