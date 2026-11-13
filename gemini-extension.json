@@ -1,0 +1,13 @@
+{
+  "name": "financeratecalc",
+  "version": "1.48.0",
+  "description": "Receipted US housing and small-business finance figures: FHA and VA denial rates from the 2025 HMDA file, official HUD, Ginnie Mae and SBA figures as printed, with a verifiable receipt and a use contract for every number.",
+  "mcpServers": {
+    "financeratecalc": {
+      "httpUrl": "https://frc-mcp.ziyetis.workers.dev",
+      "description": "FinanceRateCalc: figures from public records with receipts (read-only, no key)",
+      "timeout": 30000
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
