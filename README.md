@@ -39,6 +39,7 @@ https://financeratecalc.com/use-frc.html
 | `get_denial_reason_shares` | Median and maximum share of each HMDA denial reason across the top-100 lenders. |
 | `get_door_effect_summary` | Lender identity's share of explained variation in 2025 FHA denials. |
 | `get_application_outcomes` | Where FHA applications end: originated, approved-not-accepted, denied, withdrawn, closed-incomplete as shares of applications acted on, nationally or for one lender, with the reconciliation to the decisioned denial rate. |
+| `locate_denominator` | Which definition reproduces a quoted 2025 denial rate: program (FHA, VA) x loan purpose x scope x base, with counts. A match is not an attribution. |
 | `get_official_figure` | A figure from an official publication (first: HUD's monthly FHA Single Family Production Report) exactly as printed, with the document's SHA-256, table and row, period, exclusion note, revision status and a receipt; nothing computed. Params: source, period (YYYY-MM), figure. |
 | `get_conditional_door_map` | Per-lender conditional surface with its robustness record. |
 | `list_cohorts` / `run_cohort` | Ready-made public cohorts; no upload needed. |
